@@ -30,7 +30,9 @@ fg = folium.FeatureGroup(name="My Map")
 for lt, ln, el in zip(lat, lon,elev):
     iframe = folium.IFrame(html=html % str(el),width=200,height=100)
     fg.add_child(folium.Marker(location=[lt,ln], popup=folium.Popup(iframe), icon = folium.Icon(color=color_producer(el))))
+    
 
+fg.add_child(folium.GeoJson(data=(open('world.json','r',encoding='utf-8-sig').read())))
 
 map.add_child(fg)
 
